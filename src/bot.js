@@ -158,11 +158,13 @@ client.on("messageCreate", async (message) => {
                 {
                   id: process.env.ROLE_ID,
                   allow: ["VIEW_CHANNEL"],
+                  deny: ["SEND_MESSAGES"],
                 },
                 {
                   id: message.guild.roles.everyone,
                   deny: [
                     "VIEW_CHANNEL", 
+                    "READ_MESSAGE_HISTORY"
                   ]
                 }
               ],
