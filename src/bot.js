@@ -147,9 +147,35 @@ client.on("messageCreate", async (message) => {
     }
 
 
-    // else if(CMD_NAME == "movie"){
-      
-    // }
+    else if(CMD_NAME == "pvttxt"){
+      if (args.length > 0) {
+        args.map((item) => {
+          message.guild.channels
+            .create(item, {
+              type: "text",
+              parent: process.env.CATEGORY_ID,
+              permissionOverwrites: [
+                {
+                  id: process.env.ROLE_ID,
+                  allow: ["VIEW_CHANNEL"],
+                },
+                {
+                  id: message.guild.roles.everyone,
+                  deny: [
+                    "VIEW_CHANNEL", 
+                  ]
+                }
+              ],
+            })
+        });
+      } else {
+        const exampleEmbed = new MessageEmbed()
+          .setTitle(`Please provide channel name(s)`)
+          .setColor("#ff2050")
+          .addField("Channel:", "no channel name provided", true);
+        message.channel.send({ embeds: [exampleEmbed] });
+      }
+    }
  
   }
 });
