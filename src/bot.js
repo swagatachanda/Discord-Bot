@@ -157,13 +157,19 @@ client.on("messageCreate", async (message) => {
               permissionOverwrites: [
                 {
                   id: process.env.ROLE_ID,
-                  allow: ["VIEW_CHANNEL"],
+                  allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
                   deny: ["SEND_MESSAGES"],
+                },
+                {
+                  id: process.env.ROLE_ID_EX,
+                  allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
+                  deny: ["READ_MESSAGE_HISTORY"],
                 },
                 {
                   id: message.guild.roles.everyone,
                   deny: [
                     "VIEW_CHANNEL", 
+                    "SEND_MESSAGES",
                     "READ_MESSAGE_HISTORY"
                   ]
                 }
